@@ -13,8 +13,8 @@ jobs:
           echo ${{ github.event.issue.pull_request.head_ref }}
           echo ${{ github.event.issue.pull_request.headRef }}
           echo ${{ github.event.issue.pull_request.commits }}
-          echo ${{ fromJSON(github.event.issue.pull_request).head_ref }}
-          echo ${{ fromJSON(github.event.issue.pull_request).head.ref }}
+          # echo ${{ fromJSON(github.event.issue.pull_request).head_ref }}
+          # echo ${{ fromJSON(github.event.issue.pull_request).head.ref }}
           echo 'headRef'
           echo ${{ fromJSON(github.event.issue.pull_request).headRef }}
 
