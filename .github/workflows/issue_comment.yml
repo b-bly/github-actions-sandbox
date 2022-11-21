@@ -9,4 +9,5 @@ jobs:
     steps:
       - name: check out pr data
         run: |
-          echo ${{ github.event.issue.pull_request }}
+          echo ${{ github.event.issue.pull_request.base_ref }}
+          echo ${{ github.event.issue.pull_request.head_ref }}
