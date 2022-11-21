@@ -1,0 +1,12 @@
+name: issue_comment
+
+on:
+  issue_comment:
+
+jobs:
+  log-comment
+  runs-on: ubuntu-latest
+  steps:
+    - name: check out pr data
+      run: |
+        echo ${{ github.event.issue.pull_request }}
