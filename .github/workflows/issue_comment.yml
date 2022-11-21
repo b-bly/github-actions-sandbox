@@ -14,4 +14,3 @@ jobs:
           echo "${{ github.event.issue.pull_request.headRef }}"
           echo "${{ github.event.issue.pull_request.commits }}"
           echo 'headRef'
-
