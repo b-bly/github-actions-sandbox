@@ -18,6 +18,8 @@ jobs:
       #     echo 'headRef'
       - uses: 8BitJonny/gh-get-current-pr@2.1.3
         id: PR
+        with:
+          github-token: "${{secrets.GITHUB_TOKEN}}"
       - run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
       # - name: Get pr with github-script
       #   uses: actions/github-script@v6
