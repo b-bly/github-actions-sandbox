@@ -36,4 +36,3 @@ jobs:
       - name: context
         run: |
           echo "${{ toJSON(context) }}"
-
