@@ -51,4 +51,7 @@ jobs:
             } catch (err) {
               core.setFailed(`Request failed with error ${err}`)
             }
-            
+      - name: check vars
+        run: |
+          echo ${{ fromJSON(steps.get-pr.outputs.result).head.repo.full_name }}
+          echo ${{ fromJSON(steps.get-pr.outputs.result).head.sha }}
