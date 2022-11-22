@@ -55,3 +55,15 @@ jobs:
         run: |
           echo ${{ fromJSON(steps.get-pr.outputs.result).head.repo.full_name }}
           echo ${{ fromJSON(steps.get-pr.outputs.result).head.sha }}
+          echo 'github.base_ref'
+          echo ${{ github.base_ref }}
+          echo 'head_ref'
+          echo ${{ github.head_ref }}
+          echo 'sha'
+          echo ${{ github.sha }}
+          echo 'GITHUB_REPOSITORY'
+          echo '$GITHUB_REPOSITORY'
+          echo 'GITHUB_REF_NAME'
+          echo $GITHUB_REF_NAME
+          echo 'githubissue.number'
+          echo ${{ github.issue.number }}
