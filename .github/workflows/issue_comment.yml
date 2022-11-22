@@ -34,7 +34,7 @@ jobs:
       #       echo $pr
       #       echo 'toJSON'
       #       echo toJSON($pr)
-      - uses: actions/github-script@v3
+      - uses: actions/github-script@v6
         id: get-pr
         with:
           github-token: "${{secrets.GITHUB_TOKEN}}"
