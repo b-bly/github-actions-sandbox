@@ -16,19 +16,20 @@ jobs:
       #     echo "${{ github.event.issue.pull_request.commits }}"
       #     echo "${{ toJSON(github.event.issue) }}"
       #     echo 'headRef'
-      # - uses: 8BitJonny/gh-get-current-pr@2.1.3
-      #   id: PR
-      # - run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
-      - name: Get pr with github-script
-        uses: actions/github-script@v6
-        with:
-          script: |
-            pr=github.rest.pulls.get({
-              pull_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-            })
-            echo 'echo pr'
-            echo $pr
-            echo 'toJSON'
-            echo toJSON($pr)
+      - uses: 8BitJonny/gh-get-current-pr@2.1.3
+        id: PR
+      - run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
+      # - name: Get pr with github-script
+      #   uses: actions/github-script@v6
+      #   with:
+      #     script: |
+      #       pr=github.rest.pulls.get({
+      #         pull_number: context.issue.number,
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #       })
+      #       echo 'echo pr'
+      #       echo $pr
+      #       echo 'toJSON'
+      #       echo toJSON($pr)
+      
