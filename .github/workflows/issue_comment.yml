@@ -67,3 +67,4 @@ jobs:
           echo $GITHUB_REF_NAME
           echo 'githubissue.number'
           echo ${{ github.issue.number }}
+
