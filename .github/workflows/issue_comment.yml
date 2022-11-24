@@ -16,11 +16,16 @@ jobs:
       #     echo "${{ github.event.issue.pull_request.commits }}"
       #     echo "${{ toJSON(github.event.issue) }}"
       #     echo 'headRef'
-      - uses: 8BitJonny/gh-get-current-pr@2.1.3
-        id: PR
+      - uses: actions/github-script@v3
         with:
-          github-token: "${{secrets.GITHUB_TOKEN}}"
-      - run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for reporting!'
+            })
       # - name: Get pr with github-script
       #   uses: actions/github-script@v6
       #   with:
@@ -62,9 +67,9 @@ jobs:
           echo 'sha'
           echo ${{ github.sha }}
           echo 'GITHUB_REPOSITORY'
-          echo '$GITHUB_REPOSITORY'
+          echo $GITHUB_REPOSITORY
           echo 'GITHUB_REF_NAME'
           echo $GITHUB_REF_NAME
-          echo 'githubissue.number'
-          echo ${{ github.issue.number }}
+          echo 'github.event.issue.number'
+          echo ${{ github.event.issue.number }}
 
