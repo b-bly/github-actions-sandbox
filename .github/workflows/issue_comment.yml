@@ -8,6 +8,10 @@ jobs:
   log-comment:
     runs-on: ubuntu-latest
     steps:
+      - name: check comment
+        if [[ github.event.comment.body =~ 'cypress-burn' ]]; then
+          echo 'comment worked'
+        fi
       # - name: check out pr data
       #   run: |
       #     echo "${{ github.event.issue.pull_request.base_ref }}"
@@ -72,4 +76,4 @@ jobs:
           echo $GITHUB_REF_NAME
           echo 'github.event.issue.number'
           echo ${{ github.event.issue.number }}
-
+g
