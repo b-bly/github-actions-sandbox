@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: check comment
         id: times
-        run: echo "times=$(echo ${{ github.event.comment.body }} | sed 's/.* -t \([0-9]\).*/\1/')" >> $GITHUB_OUTPUT
+        run: echo "times=$(${{ github.event.comment.body }} | sed 's/.* -t \([0-9]\).*/\1/')" >> $GITHUB_OUTPUT
       - run: echo ${{ steps.times.outputs.times }}
       # - name: check out pr data
       #   run: |
@@ -76,3 +76,4 @@ jobs:
           echo $GITHUB_REF_NAME
           echo 'github.event.issue.number'
           echo ${{ github.event.issue.number }}
+
