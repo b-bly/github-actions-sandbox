@@ -9,8 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check comment
-        if: contains(github.event.comment.body, 'cypress-burn')
-        run: echo 'im running'
+        id: times
+        run: echo "times=$(echo ${{ github.event.comment.body }} | sed 's/.* -t \([0-9]\).*/\1/')" >> $GITHUB_OUTPUT
+      - run: echo ${{ steps.times.outputs.times }}
       # - name: check out pr data
       #   run: |
       #     echo "${{ github.event.issue.pull_request.base_ref }}"
