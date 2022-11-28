@@ -76,4 +76,3 @@ jobs:
           echo $GITHUB_REF_NAME
           echo 'github.event.issue.number'
           echo ${{ github.event.issue.number }}
-
