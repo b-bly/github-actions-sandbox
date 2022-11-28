@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: check comment
         run: |
-          if [[ github.event.comment.body =~ 'cypress-burn' ]]; then
+          if [[ "${{github.event.comment.body}}" =~ 'cypress-burn' ]]; then
             echo 'comment worked'
           fi
       # - name: check out pr data
