@@ -9,10 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check comment
-        run: |
-          if [[ "${{ github.event.comment.body }}" =~ 'cypress-burn' ]]; then
-            echo 'comment worked'
-          fi
+        if: contains(github.event.comment.body, 'cypress-burn')
+        run: echo 'im running'
       # - name: check out pr data
       #   run: |
       #     echo "${{ github.event.issue.pull_request.base_ref }}"
