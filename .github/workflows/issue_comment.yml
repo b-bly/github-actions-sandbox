@@ -78,4 +78,3 @@ jobs:
           echo 'github.event.issue.number'
           echo ${{ github.event.issue.number }}
 
-
