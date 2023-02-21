@@ -3,11 +3,15 @@ name: test workflow_dispach
 on:
   workflow_dispatch:
     inputs:
-      description: 'Flavor'
-      type: choice
-      options:
-      - vanilla
-      - strawberry
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
 
 jobs:
   log-comment:
