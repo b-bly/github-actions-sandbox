@@ -1,0 +1,26 @@
+name: new test workflow_dispach
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'New level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+
+jobs:
+  new-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: View context attributes
+        uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(context)
+            console.log(context.payload.repository.owner.login)
+            console.log(context.payload.repository.name)
