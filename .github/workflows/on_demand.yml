@@ -22,3 +22,5 @@ jobs:
         with:
           script: |
             console.log(context)
+            context.repository.owner ??
+            context.repository.name
