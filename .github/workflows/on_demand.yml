@@ -1,7 +1,7 @@
 name: test workflow_dispach
 
 on:
-  workflow_dispach:
+  workflow_dispatch:
     inputs:
       description: 'Flavor'
       type: choice
