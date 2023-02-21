@@ -2,6 +2,12 @@ name: test workflow_dispach
 
 on:
   workflow_dispach:
+    inputs:
+      description: 'Flavor'
+      type: choice
+      options:
+      - vanilla
+      - strawberry
 
 jobs:
   log-comment:
