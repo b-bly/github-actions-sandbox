@@ -1,0 +1,16 @@
+name: Test checkout
+
+on:
+  pull_request:
+
+jobs:
+  log-info:
+    - run: echo ${{ github.repository }}
+  log-pr:
+    - uses: actions/checkout@v3
+      with:
+        # Repository name with owner. For example, actions/checkout
+        # Default: ${{ github.repository }}
+        repository: 'https://github.com/b-bly/private-test.git'
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - run: ls
