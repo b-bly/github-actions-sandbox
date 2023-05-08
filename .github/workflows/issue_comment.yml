@@ -1,86 +1,86 @@
-name: issue_comment
+# name: issue_comment
 
-on:
-  issue_comment:
-  pull_request:
+# on:
+#   issue_comment:
+#   pull_request:
 
-jobs:
-  log-comment:
-    runs-on: ubuntu-latest
-    steps:
-      - name: check comment
-        id: times
-        run: echo "times=$(${{ github.event.comment.body }} | sed 's/.* -t \([0-9]\).*/\1/')" >> $GITHUB_OUTPUT
-      - run: echo ${{ steps.times.outputs.times }}
-      # - name: check out pr data
-      #   run: |
-      #     echo "${{ github.event.issue.pull_request.base_ref }}"
-      #     echo "${{ github.event.issue.pull_request.head_ref }}"
-      #     echo "${{ github.event.issue.pull_request.headRef }}"
-      #     echo "${{ github.event.issue.pull_request.commits }}"
-      #     echo "${{ toJSON(github.event.issue) }}"
-      #     echo 'headRef'
-      - uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
-            })
-      # - name: Get pr with github-script
-      #   uses: actions/github-script@v6
-      #   with:
-      #     script: |
-      #       pr=github.rest.pulls.get({
-      #         pull_number: context.issue.number,
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #       })
-      #       echo 'echo pr'
-      #       echo $pr
-      #       echo 'toJSON'
-      #       echo toJSON($pr)
-      - uses: actions/github-script@v6
-        id: get-pr
-        with:
-          github-token: "${{secrets.GITHUB_TOKEN}}"
-          script: |
-            const request = {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.issue.number
-            }
+# jobs:
+#   log-comment:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: check comment
+#         id: times
+#         run: echo "times=$(${{ github.event.comment.body }} | sed 's/.* -t \([0-9]\).*/\1/')" >> $GITHUB_OUTPUT
+#       - run: echo ${{ steps.times.outputs.times }}
+#       # - name: check out pr data
+#       #   run: |
+#       #     echo "${{ github.event.issue.pull_request.base_ref }}"
+#       #     echo "${{ github.event.issue.pull_request.head_ref }}"
+#       #     echo "${{ github.event.issue.pull_request.headRef }}"
+#       #     echo "${{ github.event.issue.pull_request.commits }}"
+#       #     echo "${{ toJSON(github.event.issue) }}"
+#       #     echo 'headRef'
+#       - uses: actions/github-script@v3
+#         with:
+#           github-token: ${{secrets.GITHUB_TOKEN}}
+#           script: |
+#             github.issues.createComment({
+#               issue_number: context.issue.number,
+#               owner: context.repo.owner,
+#               repo: context.repo.repo,
+#               body: '👋 Thanks for reporting!'
+#             })
+#       # - name: Get pr with github-script
+#       #   uses: actions/github-script@v6
+#       #   with:
+#       #     script: |
+#       #       pr=github.rest.pulls.get({
+#       #         pull_number: context.issue.number,
+#       #         owner: context.repo.owner,
+#       #         repo: context.repo.repo,
+#       #       })
+#       #       echo 'echo pr'
+#       #       echo $pr
+#       #       echo 'toJSON'
+#       #       echo toJSON($pr)
+#       - uses: actions/github-script@v6
+#         id: get-pr
+#         with:
+#           github-token: "${{secrets.GITHUB_TOKEN}}"
+#           script: |
+#             const request = {
+#               owner: context.repo.owner,
+#               repo: context.repo.repo,
+#               pull_number: context.issue.number
+#             }
 
-            console.log(context.repo.owner)
-            console.log(context.repo.repo)
-            console.log(context.issue.number)
-            core.info(`Getting PR #${request.pull_number} from ${request.owner}/${request.repo}`)
-            try {
-              const result = await github.rest.pulls.get(request)
-              return result.data
-            } catch (err) {
-              core.setFailed(`Request failed with error ${err}`)
-            }
-      # logs
-      # b-bly
-      # github-actions-sandbox
-      # 29
-      - name: check vars
-        run: |
-          echo ${{ fromJSON(steps.get-pr.outputs.result).head.repo.full_name }}
-          echo ${{ fromJSON(steps.get-pr.outputs.result).head.sha }}
-          echo 'github.base_ref'
-          echo ${{ github.base_ref }}
-          echo 'head_ref'
-          echo ${{ github.head_ref }}
-          echo 'sha'
-          echo ${{ github.sha }}
-          echo 'GITHUB_REPOSITORY'
-          echo $GITHUB_REPOSITORY
-          echo 'GITHUB_REF_NAME'
-          echo $GITHUB_REF_NAME
-          echo 'github.event.issue.number'
-          echo ${{ github.event.issue.number }}
+#             console.log(context.repo.owner)
+#             console.log(context.repo.repo)
+#             console.log(context.issue.number)
+#             core.info(`Getting PR #${request.pull_number} from ${request.owner}/${request.repo}`)
+#             try {
+#               const result = await github.rest.pulls.get(request)
+#               return result.data
+#             } catch (err) {
+#               core.setFailed(`Request failed with error ${err}`)
+#             }
+#       # logs
+#       # b-bly
+#       # github-actions-sandbox
+#       # 29
+#       - name: check vars
+#         run: |
+#           echo ${{ fromJSON(steps.get-pr.outputs.result).head.repo.full_name }}
+#           echo ${{ fromJSON(steps.get-pr.outputs.result).head.sha }}
+#           echo 'github.base_ref'
+#           echo ${{ github.base_ref }}
+#           echo 'head_ref'
+#           echo ${{ github.head_ref }}
+#           echo 'sha'
+#           echo ${{ github.sha }}
+#           echo 'GITHUB_REPOSITORY'
+#           echo $GITHUB_REPOSITORY
+#           echo 'GITHUB_REF_NAME'
+#           echo $GITHUB_REF_NAME
+#           echo 'github.event.issue.number'
+#           echo ${{ github.event.issue.number }}
