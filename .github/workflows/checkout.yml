@@ -5,13 +5,17 @@ on:
 
 jobs:
   log-info:
-    - run: echo ${{ github.repository }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ github.repository }}
   log-pr:
-    - uses: actions/checkout@v3
-      with:
-        # Repository name with owner. For example, actions/checkout
-        # Default: ${{ github.repository }}
-        repository: 'https://github.com/b-bly/private-test.git'
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - run: ls
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # Repository name with owner. For example, actions/checkout
+          # Default: ${{ github.repository }}
+          repository: 'b-bly/private-test'
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: ls
 
