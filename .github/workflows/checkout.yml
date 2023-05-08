@@ -3,15 +3,12 @@ name: Test checkout
 on:
   pull_request:
 
-permissions:
-  contents: read 
-
 jobs:
   log-info:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ github.repository }}
-      - run: echo ${{ secrets.GITHUB_TOKEN }}
+      - run: echo ${{ secrets.GH_TOKEN }}
   log-pr:
     runs-on: ubuntu-latest
     steps:
@@ -21,7 +18,7 @@ jobs:
           # Default: ${{ github.repository }}
           repository: b-bly/private-test
           ref: 'main'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           path: 'private-test'
       - run: ls
 
